@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="en" class="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Syllabus2Career | Skill Graph Engine V2.4</title>
+    <!-- Tailwind CSS v4 -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/animation.css">
+</head>
+<body class="min-h-screen font-sans antialiased selection:bg-indigo-500 selection:text-white relative">
+
+    <!-- ================= CINEMATIC LARGE INTRO SPLASH SCREEN ================= -->
+    <div id="intro-splash">
+        <!-- Radiant University / Student Graduation Outline Background in Splash -->
+        <svg class="splash-university-bg" viewBox="0 0 24 24" stroke-width="0.5">
+            <path d="M12 3L1 9l11 6 9-4.91V17h2V9M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82z"/>
+        </svg>
+
+        <div class="relative z-10 flex flex-col items-center space-y-6 text-center px-4">
+            <!-- Large Glowing Logo Box -->
+            <div class="w-32 h-32 sm:w-36 sm:h-36 rounded-3xl bg-gradient-to-tr from-indigo-600/40 to-violet-600/40 border-2 border-indigo-500/60 flex items-center justify-center shadow-2xl shadow-indigo-600/50 relative group">
+                <div class="absolute inset-0 bg-indigo-500/30 blur-2xl"></div>
+                <svg class="w-16 h-16 sm:w-20 sm:h-20 text-indigo-300 relative z-10 filter drop-shadow(0 0 10px rgba(129, 140, 248, 0.8))" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                </svg>
+            </div>
+
+            <!-- Large Brand Title & Subtitle -->
+            <div class="space-y-3">
+                <h1 class="text-3xl sm:text-5xl font-black tracking-tight text-white bg-gradient-to-r from-white via-indigo-100 to-indigo-400 bg-clip-text text-transparent drop-shadow-lg">
+                    Syllabus2Career
+                </h1>
+                <p class="text-xs sm:text-sm font-mono tracking-widest text-indigo-300 uppercase font-bold">
+                    DSU CSE • SKILL GRAPH ENGINE V2.4
+                </p>
+            </div>
+
+            <!-- Animated Progress Bar -->
+            <div class="w-56 sm:w-64 h-1.5 bg-slate-800/80 rounded-full overflow-hidden mt-6 border border-indigo-500/30 shadow-inner">
+                <div class="bg-gradient-to-r from-indigo-500 via-violet-500 to-teal-400 h-full rounded-full animate-pulse" style="width: 85%"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Persistent Neon Border-Shine Background Watermark Layer -->
+    <div class="fixed inset-0 flex items-center justify-center pointer-events-none z-[-1] overflow-hidden">
+        <svg class="w-[55vw] h-[55vw] max-w-[650px] max-h-[650px] transform scale-110 radiant-border-shine" viewBox="0 0 24 24">
+            <path d="M13 10V3L4 14h7v7l9-11h-7z"/>
+        </svg>
+    </div>
+
+    <!-- Top Navigation Bar -->
+    <header class="border-b border-indigo-500/20 bg-[#060911]/85 backdrop-blur-2xl sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+            <div class="flex items-center space-x-3">
+                <!-- Header Logo Container -->
+                <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-600/30 to-violet-600/30 border border-indigo-500/40 flex items-center justify-center overflow-hidden shadow-lg shadow-indigo-500/20 relative group">
+                    <div class="absolute inset-0 bg-indigo-500/20 blur-md opacity-75"></div>
+                    <svg class="w-5 h-5 text-indigo-400 relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+                    </svg>
+                </div>
+                <div>
+                    <h1 class="font-black text-base tracking-tight text-white flex items-center gap-2">
+                        Syllabus2Career
+                    </h1>
+                    <span class="text-[9px] tracking-widest text-indigo-400 font-mono font-bold uppercase">SKILL GRAPH ENGINE V2.4</span>
+                </div>
+            </div>
+
+            <!-- Navigation Tabs -->
+            <nav class="hidden md:flex items-center space-x-1 bg-[#030508] p-1.5 rounded-full border border-indigo-500/20 shadow-inner">
+                <button onclick="switchView('dashboard')" class="nav-btn px-4 py-1.5 text-xs font-semibold rounded-full bg-indigo-600 text-white shadow-lg shadow-indigo-600/35 transition-all">Dashboard</button>
+                <button onclick="switchView('career-explorer')" class="nav-btn px-4 py-1.5 text-xs font-medium rounded-full text-slate-400 hover:text-white transition-all">Career Explorer</button>
+                <button onclick="switchView('syllabus-mapping')" class="nav-btn px-4 py-1.5 text-xs font-medium rounded-full text-slate-400 hover:text-white transition-all">Syllabus Mapping</button>
+                <button onclick="switchView('ai-roadmap')" class="nav-btn px-4 py-1.5 text-xs font-medium rounded-full text-slate-400 hover:text-white transition-all">AI Roadmap</button>
+            </nav>
+
+            <!-- Profile & Clickable Rank Badge Showcase Trigger -->
+            <div onclick="showBadgeShowcase()" class="flex items-center space-x-3 cursor-pointer group p-1.5 rounded-xl hover:bg-indigo-500/10 transition-all border border-transparent hover:border-indigo-500/30" title="Click to view rank badges & student scores">
+                <div class="hidden sm:block text-right">
+                    <div class="text-xs font-bold text-slate-200 group-hover:text-indigo-400 transition-colors">Varsha B R</div>
+                    <div class="text-[10px] text-indigo-400 font-medium flex items-center justify-end gap-1 font-mono">
+                        <span>CSE • Sem 3</span>
+                        <span class="px-1.5 py-0.5 rounded text-[9px] bg-amber-500/20 text-amber-300 border border-amber-500/30 font-bold">🏆 Rank #2</span>
+                    </div>
+                </div>
+                <div class="w-9 h-9 rounded-full bg-gradient-to-tr from-indigo-600 to-violet-600 flex items-center justify-center font-bold text-xs text-white shadow-lg ring-2 ring-indigo-500/30 group-hover:ring-indigo-400 transition-all">
+                    VB
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Application Container -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 relative z-10">
+
+        <!-- ================= VIEW 1: DASHBOARD ================= -->
+        <div id="dashboard-view" class="app-view space-y-8 animate-fade-in">
+            <!-- Cohort Banner -->
+            <div class="relative overflow-hidden rounded-3xl holo-card p-6 sm:p-8">
+                <div class="absolute -right-10 -bottom-10 w-60 h-60 bg-indigo-600/20 rounded-full blur-3xl pointer-events-none"></div>
+                <div class="relative z-10 flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+                    <div class="space-y-3">
+                        <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-mono font-bold bg-indigo-500/15 text-indigo-300 border border-indigo-500/30 shadow-sm">
+                            ✨ DSU • CSE COHORT V2.4 AI SYNC
+                        </span>
+                        <h2 class="text-3xl sm:text-4xl font-black tracking-tight text-white bg-gradient-to-r from-white via-slate-200 to-indigo-300 bg-clip-text text-transparent">Curriculum Alignment Overview</h2>
+                        <p class="text-slate-300 text-sm max-w-2xl font-light leading-relaxed">
+                            Your academic subjects mapped against live software engineering competency benchmarks using neural skill graphs.
+                        </p>
+                    </div>
+                    <div class="flex items-center gap-4 bg-[#030508]/80 border border-indigo-500/30 p-4 rounded-2xl shadow-xl backdrop-blur-md">
+                        <div class="relative flex items-center justify-center">
+                            <svg class="w-16 h-16 transform -rotate-90">
+                                <circle cx="32" cy="32" r="28" stroke="currentColor" stroke-width="6" class="text-slate-800" fill="transparent"></circle>
+                                <circle cx="32" cy="32" r="28" stroke="currentColor" stroke-width="6" class="text-indigo-500" stroke-dasharray="175.9" stroke-dashoffset="49" stroke-linecap="round" fill="transparent"></circle>
+                            </svg>
+                            <span id="match-percent-badge" class="absolute text-sm font-black text-white font-mono">72%</span>
+                        </div>
+                        <div>
+                            <div class="text-[10px] text-indigo-400 uppercase tracking-widest font-mono font-bold">Overall Match</div>
+                            <div class="text-sm font-bold text-white">Software Developer</div>
+                            <button onclick="switchView('career-explorer')" class="text-xs text-indigo-400 hover:text-indigo-300 font-semibold mt-1 inline-flex items-center gap-1 transition-all">View bridge plan &rarr;</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quick Stats Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div class="holo-card rounded-2xl p-5">
+                    <div class="text-[10px] font-mono text-indigo-400 uppercase tracking-widest font-bold mb-2">Subjects Mapped</div>
+                    <div class="flex items-baseline justify-between">
+                        <span class="text-3xl font-black text-white font-mono">8 / 10</span>
+                        <span class="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-emerald-500/15 text-emerald-400 border border-emerald-500/30">+2 active</span>
+                    </div>
+                    <div class="w-full bg-slate-800/80 h-1.5 rounded-full mt-4 overflow-hidden">
+                        <div class="bg-gradient-to-r from-emerald-500 to-teal-400 h-full rounded-full shadow-lg shadow-emerald-500/50" style="width: 80%"></div>
+                    </div>
+                </div>
+
+                <div class="holo-card rounded-2xl p-5">
+                    <div class="text-[10px] font-mono text-indigo-400 uppercase tracking-widest font-bold mb-2">Industry Skills Covered</div>
+                    <div class="flex items-baseline justify-between">
+                        <span class="text-3xl font-black text-white font-mono">14 / 20</span>
+                        <span class="text-[10px] font-mono font-bold text-indigo-400">70% parity</span>
+                    </div>
+                    <div class="w-full bg-slate-800/80 h-1.5 rounded-full mt-4 overflow-hidden">
+                        <div class="bg-gradient-to-r from-indigo-500 to-violet-500 h-full rounded-full shadow-lg shadow-indigo-500/50" style="width: 70%"></div>
+                    </div>
+                </div>
+
+                <div class="holo-card rounded-2xl p-5">
+                    <div class="text-[10px] font-mono text-amber-400 uppercase tracking-widest font-bold mb-2">Identified Skill Gaps</div>
+                    <div class="flex items-baseline justify-between">
+                        <span class="text-3xl font-black text-amber-400 font-mono">6</span>
+                        <span class="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-amber-500/15 text-amber-300 border border-amber-500/30">Action required</span>
+                    </div>
+                    <div class="text-xs text-slate-300 mt-3 truncate font-mono">Missing: React, REST APIs, Docker</div>
+                </div>
+
+                <div class="holo-card rounded-2xl p-5">
+                    <div class="text-[10px] font-mono text-violet-400 uppercase tracking-widest font-bold mb-2">Portfolio Readiness</div>
+                    <div class="flex items-baseline justify-between">
+                        <span class="text-3xl font-black text-violet-400 font-mono">Level 2</span>
+                        <span class="text-[10px] font-mono font-bold px-2 py-0.5 rounded bg-violet-500/15 text-violet-300 border border-violet-500/30">2 projects built</span>
+                    </div>
+                    <div class="text-xs text-slate-300 mt-3 truncate font-mono">Next milestone: Full-stack app</div>
+                </div>
+            </div>
+
+            <!-- Detailed Grid & Live Syllabus Parser Widget -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <div class="lg:col-span-2 space-y-8">
+                    <!-- Critical Gaps List -->
+                    <div class="holo-card rounded-2xl p-6 space-y-6">
+                        <div class="flex justify-between items-center">
+                            <h3 class="text-lg font-bold text-white tracking-tight">Critical Skill Gaps for Software Roles</h3>
+                            <button onclick="switchView('career-explorer')" class="text-xs text-indigo-400 hover:text-indigo-300 font-semibold">Explore all roles &rarr;</button>
+                        </div>
+
+                        <div class="space-y-4">
+                            <div class="p-4 rounded-xl bg-[#030508]/60 border border-indigo-500/20 flex items-center justify-between gap-4">
+                                <div class="flex items-start gap-3">
+                                    <span class="w-2.5 h-2.5 rounded-full bg-amber-500 mt-1.5 shrink-0 animate-ping"></span>
+                                    <div>
+                                        <div class="text-sm font-bold text-white">Asynchronous JavaScript & REST APIs</div>
+                                        <div class="text-xs text-slate-400 mt-0.5 font-light">Required by 84% of entry-level backend & full-stack roles</div>
+                                    </div>
+                                </div>
+                                <button onclick="startModule('Asynchronous JavaScript & RESTful APIs')" class="px-3.5 py-1.5 text-xs font-bold rounded-xl bg-indigo-600/30 text-indigo-200 border border-indigo-500/40 hover:bg-indigo-600/50 transition-all shrink-0 shadow-md">Start Module</button>
+                            </div>
+
+                            <div class="p-4 rounded-xl bg-[#030508]/60 border border-indigo-500/20 flex items-center justify-between gap-4">
+                                <div class="flex items-start gap-3">
+                                    <span class="w-2.5 h-2.5 rounded-full bg-amber-500 mt-1.5 shrink-0"></span>
+                                    <div>
+                                        <div class="text-sm font-bold text-white">Git Version Control & Branch Workflows</div>
+                                        <div class="text-xs text-slate-400 mt-0.5 font-light">Partially covered in lab work; needs collaborative project practice</div>
+                                    </div>
+                                </div>
+                                <button onclick="startModule('Git Version Control & Branch Workflows')" class="px-3.5 py-1.5 text-xs font-bold rounded-xl bg-indigo-600/30 text-indigo-200 border border-indigo-500/40 hover:bg-indigo-600/50 transition-all shrink-0 shadow-md">Start Module</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Live Syllabus PDF / PPT Parser Widget -->
+                    <div class="holo-card border-indigo-500/40 rounded-2xl p-6 space-y-4 shadow-2xl">
+                        <div class="flex items-center justify-between">
+                            <span class="text-[10px] font-mono font-bold uppercase tracking-widest text-indigo-400">AI DOCUMENT PARSER V2.4</span>
+                            <button onclick="toggleLiveSync()" class="px-3 py-1 rounded-full text-[10px] font-mono font-bold bg-emerald-500/15 text-emerald-300 border border-emerald-500/30 flex items-center gap-1.5 hover:bg-emerald-500/25 transition-all cursor-pointer shadow-md">
+                                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span> Live Sync Active
+                            </button>
+                        </div>
+                        <h3 class="text-lg font-black text-white tracking-tight">Upload Course Syllabus (PDF / PPT)</h3>
+                        <p class="text-xs text-slate-300 font-light leading-relaxed">Upload your semester chapter PDF or lecture presentation to dynamically map it against industry career benchmarks for your professor's review.</p>
+                        
+                        <div class="flex items-center justify-center w-full">
+                            <label for="syllabus-file-input" class="flex flex-col items-center justify-center w-full h-28 border-2 border-indigo-500/30 border-dashed rounded-2xl cursor-pointer bg-[#030508]/60 hover:bg-[#030508] hover:border-indigo-400 transition-all group shadow-inner">
+                                <div class="flex flex-col items-center justify-center pt-4 pb-5 px-4 text-center">
+                                    <svg class="w-7 h-7 mb-2 text-indigo-400 group-hover:scale-110 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path></svg>
+                                    <p class="mb-1 text-xs text-slate-200"><span class="font-bold text-indigo-300">Click to upload syllabus PDF/PPT</span></p>
+                                    <p class="text-[10px] text-slate-400 font-mono">PDF, PPTX, or TXT supported</p>
+                                </div>
+                                <input id="syllabus-file-input" type="file" class="hidden" accept=".pdf,.ppt,.pptx,.txt" onchange="handleSyllabusUpload(event)" />
+                            </label>
+                        </div>
+                        <div id="upload-status-box" class="hidden text-xs font-mono text-emerald-300 p-3.5 rounded-xl bg-emerald-500/10 border border-emerald-500/30 shadow-lg">
+                            ✓ Syllabus parsed successfully! Dashboard metrics updated.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Lab-to-Resume AI Preview -->
+                <div class="holo-card rounded-2xl p-6 flex flex-col justify-between space-y-6">
+                    <div>
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="text-[10px] font-mono font-bold uppercase tracking-widest text-indigo-400">LAB-TO-RESUME AI</span>
+                            <span class="px-2 py-0.5 rounded text-[10px] font-mono font-bold bg-indigo-500/15 text-indigo-300 border border-indigo-500/30">V2 Engine</span>
+                        </div>
+                        <h3 class="text-lg font-black text-white tracking-tight">Convert your university lab experiments into professional resume bullet points instantly.</h3>
+                        
+                        <div class="mt-4 p-4 rounded-xl bg-[#030508] border border-indigo-500/30 font-mono text-xs text-indigo-200 leading-relaxed shadow-inner" id="ai-output-box">
+                            "Implemented AVL Tree balancing algorithms in C++ for efficient memory indexing..."
+                        </div>
+                    </div>
+
+                    <button onclick="handleAIGeneration()" class="w-full py-3 px-4 rounded-xl font-bold text-xs text-white bg-gradient-to-r from-indigo-600 via-indigo-500 to-violet-600 hover:from-indigo-500 hover:to-violet-500 shadow-xl shadow-indigo-600/30 transition-all font-mono tracking-wider border border-indigo-400/30">
+                        ⚡ Generate Bullet Point
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= VIEW 2: CAREER EXPLORER ================= -->
+        <div id="career-explorer-view" class="app-view hidden space-y-8 animate-fade-in">
+            <div class="space-y-2">
+                <h2 class="text-3xl font-black tracking-tight text-white">Career Explorer & Role Matcher</h2>
+                <p class="text-slate-300 text-sm font-light">Select any top emerging industry track to analyze your DSU curriculum match score and bridge skill gaps.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- 1. Software Developer -->
+                <div class="holo-card rounded-2xl p-6 space-y-4">
+                    <div class="flex justify-between items-start">
+                        <div class="w-10 h-10 rounded-xl bg-indigo-600/20 text-indigo-400 flex items-center justify-center font-bold font-mono border border-indigo-500/30">SD</div>
+                        <span class="px-2.5 py-1 rounded-full text-[10px] font-mono font-bold bg-emerald-500/15 text-emerald-300 border border-emerald-500/30">72% Match</span>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold text-white">Software Developer</h3>
+                        <p class="text-xs text-slate-300 mt-1 font-light">Full-stack engineering, backend systems, and scalable application design.</p>
+                    </div>
+                    <div class="pt-2 border-t border-indigo-500/20 text-xs text-slate-300 space-y-1">
+                        <div class="flex justify-between"><span>Core Match:</span> <span class="font-bold text-emerald-400 font-mono">Strong</span></div>
+                        <div class="flex justify-between"><span>Missing Gaps:</span> <span class="font-bold text-amber-400 font-mono">React, Docker</span></div>
+                    </div>
+                    <button onclick="viewBridgeRoadmap('Software Developer')" class="w-full py-2.5 rounded-xl text-xs font-bold bg-indigo-600 hover:bg-indigo-500 text-white transition-all shadow-lg shadow-indigo-600/20">View Bridge Roadmap</button>
+                </div>
+
+                <!-- 2. AI / ML Engineer -->
+                <div class="holo-card rounded-2xl p-6 space-y-4">
+                    <div class="flex justify-between items-start">
+                        <div class="w-10 h-10 rounded-xl bg-violet-600/20 text-violet-400 flex items-center justify-center font-bold font-mono border border-violet-500/30">AI</div>
+                        <span class="px-2.5 py-1 rounded-full text-[10px] font-mono font-bold bg-amber-500/15 text-amber-300 border border-amber-500/30">68% Match</span>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold text-white">AI / Machine Learning Engineer</h3>
+                        <p class="text-xs text-slate-300 mt-1 font-light">Building intelligent models, neural networks, and generative AI pipelines.</p>
+                    </div>
+                    <div class="pt-2 border-t border-indigo-500/20 text-xs text-slate-300 space-y-1">
+                        <div class="flex justify-between"><span>Core Match:</span> <span class="font-bold text-emerald-400 font-mono">Good</span></div>
+                        <div class="flex justify-between"><span>Missing Gaps:</span> <span class="font-bold text-amber-400 font-mono">PyTorch, MLOps</span></div>
+                    </div>
+                    <button onclick="viewBridgeRoadmap('AI / Machine Learning Engineer')" class="w-full py-2.5 rounded-xl text-xs font-bold bg-slate-800 hover:bg-slate-700 text-white transition-all border border-slate-700">View Bridge Roadmap</button>
+                </div>
+
+                <!-- 3. Data Analyst -->
+                <div class="holo-card rounded-2xl p-6 space-y-4">
+                    <div class="flex justify-between items-start">
+                        <div class="w-10 h-10 rounded-xl bg-blue-600/20 text-blue-400 flex items-center justify-center font-bold font-mono border border-blue-500/30">DA</div>
+                        <span class="px-2.5 py-1 rounded-full text-[10px] font-mono font-bold bg-amber-500/15 text-amber-300 border border-amber-500/30">58% Match</span>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold text-white">Data Analyst & AI Engineer</h3>
+                        <p class="text-xs text-slate-300 mt-1 font-light">Data modeling, machine learning pipelines, and predictive analysis.</p>
+                    </div>
+                    <div class="pt-2 border-t border-indigo-500/20 text-xs text-slate-300 space-y-1">
+                        <div class="flex justify-between"><span>Core Match:</span> <span class="font-bold text-amber-400 font-mono">Moderate</span></div>
+                        <div class="flex justify-between"><span>Missing Gaps:</span> <span class="font-bold text-amber-400 font-mono">Pandas, PyTorch</span></div>
+                    </div>
+                    <button onclick="viewBridgeRoadmap('Data Analyst & AI Engineer')" class="w-full py-2.5 rounded-xl text-xs font-bold bg-slate-800 hover:bg-slate-700 text-white transition-all border border-slate-700">View Bridge Roadmap</button>
+                </div>
+
+                <!-- 4. Cybersecurity -->
+                <div class="holo-card rounded-2xl p-6 space-y-4">
+                    <div class="flex justify-between items-start">
+                        <div class="w-10 h-10 rounded-xl bg-cyan-600/20 text-cyan-400 flex items-center justify-center font-bold font-mono border border-cyan-500/30">CS</div>
+                        <span class="px-2.5 py-1 rounded-full text-[10px] font-mono font-bold bg-violet-500/15 text-violet-300 border border-violet-500/30">65% Match</span>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold text-white">Cybersecurity Engineer</h3>
+                        <p class="text-xs text-slate-300 mt-1 font-light">Network security, vulnerability assessments, and cryptography.</p>
+                    </div>
+                    <div class="pt-2 border-t border-indigo-500/20 text-xs text-slate-300 space-y-1">
+                        <div class="flex justify-between"><span>Core Match:</span> <span class="font-bold text-violet-400 font-mono">Good</span></div>
+                        <div class="flex justify-between"><span>Missing Gaps:</span> <span class="font-bold text-amber-400 font-mono">Wireshark, SIEM</span></div>
+                    </div>
+                    <button onclick="viewBridgeRoadmap('Cybersecurity Engineer')" class="w-full py-2.5 rounded-xl text-xs font-bold bg-slate-800 hover:bg-slate-700 text-white transition-all border border-slate-700">View Bridge Roadmap</button>
+                </div>
+
+                <!-- 5. Cloud & DevOps -->
+                <div class="holo-card rounded-2xl p-6 space-y-4">
+                    <div class="flex justify-between items-start">
+                        <div class="w-10 h-10 rounded-xl bg-emerald-600/20 text-emerald-400 flex items-center justify-center font-bold font-mono border border-emerald-500/30">CA</div>
+                        <span class="px-2.5 py-1 rounded-full text-[10px] font-mono font-bold bg-amber-500/15 text-amber-300 border border-amber-500/30">60% Match</span>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold text-white">Cloud & DevOps Architect</h3>
+                        <p class="text-xs text-slate-300 mt-1 font-light">Cloud infrastructure, Docker containerization, and automated CI/CD pipelines.</p>
+                    </div>
+                    <div class="pt-2 border-t border-indigo-500/20 text-xs text-slate-300 space-y-1">
+                        <div class="flex justify-between"><span>Core Match:</span> <span class="font-bold text-amber-400 font-mono">Moderate</span></div>
+                        <div class="flex justify-between"><span>Missing Gaps:</span> <span class="font-bold text-amber-400 font-mono">Kubernetes, Terraform</span></div>
+                    </div>
+                    <button onclick="viewBridgeRoadmap('Cloud & DevOps Architect')" class="w-full py-2.5 rounded-xl text-xs font-bold bg-slate-800 hover:bg-slate-700 text-white transition-all border border-slate-700">View Bridge Roadmap</button>
+                </div>
+
+                <!-- 6. Full-Stack Engineer -->
+                <div class="holo-card rounded-2xl p-6 space-y-4">
+                    <div class="flex justify-between items-start">
+                        <div class="w-10 h-10 rounded-xl bg-rose-600/20 text-rose-400 flex items-center justify-center font-bold font-mono border border-rose-500/30">FS</div>
+                        <span class="px-2.5 py-1 rounded-full text-[10px] font-mono font-bold bg-emerald-500/15 text-emerald-300 border border-emerald-500/30">75% Match</span>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold text-white">Full-Stack Product Engineer</h3>
+                        <p class="text-xs text-slate-300 mt-1 font-light">End-to-end web applications combining React, Node.js, and API architectures.</p>
+                    </div>
+                    <div class="pt-2 border-t border-indigo-500/20 text-xs text-slate-300 space-y-1">
+                        <div class="flex justify-between"><span>Core Match:</span> <span class="font-bold text-emerald-400 font-mono">Strong</span></div>
+                        <div class="flex justify-between"><span>Missing Gaps:</span> <span class="font-bold text-amber-400 font-mono">Next.js, GraphQL</span></div>
+                    </div>
+                    <button onclick="viewBridgeRoadmap('Full-Stack Product Engineer')" class="w-full py-2.5 rounded-xl text-xs font-bold bg-slate-800 hover:bg-slate-700 text-white transition-all border border-slate-700">View Bridge Roadmap</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= VIEW 3: SYLLABUS MAPPING ================= -->
+        <div id="syllabus-mapping-view" class="app-view hidden space-y-8 animate-fade-in">
+            <div class="space-y-2">
+                <h2 class="text-3xl font-black tracking-tight text-white">Academic Syllabus Mapping</h2>
+                <p class="text-slate-300 text-sm font-light">Direct mapping of Dayananda Sagar University CSE curriculum courses to industrial competencies.</p>
+            </div>
+
+            <div class="holo-card rounded-2xl p-6 space-y-4">
+                <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 pb-4 border-b border-indigo-500/20">
+                    <div>
+                        <h3 class="text-lg font-bold text-white">Data Structures and Algorithms (CSE301)</h3>
+                        <p class="text-xs text-slate-300 font-light">Semester 3 • Core University Course</p>
+                    </div>
+                    <span class="px-3 py-1 rounded-full text-xs font-mono font-bold bg-emerald-500/15 text-emerald-300 border border-emerald-500/30">95% Industry Relevant</span>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
+                    <div class="p-4 rounded-xl bg-[#030508] border border-indigo-500/20">
+                        <div class="font-bold text-white mb-1">Syllabus Topics Covered:</div>
+                        <p class="text-slate-300 font-light">Trees, AVL Trees, Graphs, Hashing, Dynamic Programming.</p>
+                    </div>
+                    <div class="p-4 rounded-xl bg-[#030508] border border-indigo-500/20">
+                        <div class="font-bold text-indigo-400 mb-1">Mapped Career Skill:</div>
+                        <p class="text-slate-200 font-light">Backend System Optimization & Technical Interview Readiness.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ================= VIEW 4: AI ROADMAP ================= -->
+        <div id="ai-roadmap-view" class="app-view hidden space-y-8 animate-fade-in">
+            <div class="space-y-2">
+                <h2 class="text-3xl font-black tracking-tight text-white">AI Bridge Roadmap & Modules</h2>
+                <p class="text-slate-300 text-sm font-light">Personalized micro-learning modules curated to bridge identified skill gaps.</p>
+            </div>
+
+            <div class="space-y-4">
+                <div class="holo-card border-indigo-500/40 rounded-2xl p-6 flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+                    <div class="space-y-2">
+                        <span class="px-2.5 py-1 rounded text-[10px] font-mono font-bold bg-indigo-500/15 text-indigo-300 border border-indigo-500/30">MODULE 01</span>
+                        <h3 class="text-lg font-bold text-white">Asynchronous JavaScript & RESTful APIs</h3>
+                        <p class="text-xs text-slate-300 max-w-xl font-light">Master async/await, Fetch API, JSON parsing, and handling HTTP requests for dynamic web apps.</p>
+                    </div>
+                    <div class="flex items-center gap-3 shrink-0">
+                        <button onclick="continueModule('Asynchronous JavaScript & RESTful APIs')" class="px-4 py-2 rounded-xl text-xs font-bold bg-emerald-600 hover:bg-emerald-500 text-white shadow-lg transition-all">Continue Module</button>
+                        <button onclick="startModule('Asynchronous JavaScript & RESTful APIs')" class="px-4 py-2 rounded-xl text-xs font-bold bg-indigo-600 hover:bg-indigo-500 text-white shadow-lg transition-all">Start Module</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Splash Screen Dismiss Script -->
+    <script>
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                const splash = document.getElementById('intro-splash');
+                splash.classList.add('fade-out');
+            }, 1400); // 1.4 seconds display time for maximum presentation impact
+        });
+    </script>
+
+    <!-- Modular Scripts -->
+    <script src="js/data.js"></script>
+    <script src="js/engine.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

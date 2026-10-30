@@ -1,0 +1,155 @@
+/* ==========================================================
+   SYLLABUS2CAREER | HOLOGRAPHIC CYBER-GRID THEME V3.3
+   ========================================================== */
+
+:root {
+    --bg-canvas: #030508;
+    --surface-glass: rgba(13, 17, 28, 0.75);
+    --border-hologram: rgba(99, 102, 241, 0.2);
+    --border-hover: rgba(99, 102, 241, 0.6);
+}
+
+body {
+    background-color: var(--bg-canvas);
+    color: #f8fafc;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Cybernetic Animated Background Grid & Glowing Orbs */
+body::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    background-image: 
+        linear-gradient(to right, rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+    background-size: 40px 40px;
+    z-index: -3;
+    pointer-events: none;
+}
+
+body::after {
+    content: '';
+    position: fixed;
+    top: -20vh; left: 20vw; width: 60vw; height: 60vh;
+    background: radial-gradient(circle, rgba(99, 102, 241, 0.12) 0%, rgba(139, 92, 246, 0.05) 50%, transparent 70%);
+    filter: blur(80px);
+    z-index: -2;
+    pointer-events: none;
+}
+
+/* Cinematic Intro Splash Screen Overlay */
+#intro-splash {
+    position: fixed;
+    inset: 0;
+    background-color: #030508;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.8s ease;
+}
+
+#intro-splash.fade-out {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+/* Radiant University / Student Campus Outline Watermark Background */
+.splash-university-bg {
+    position: absolute;
+    width: 80vw;
+    height: 80vw;
+    max-width: 800px;
+    max-height: 800px;
+    opacity: 0.15;
+    pointer-events: none;
+    z-index: 1;
+    stroke: rgba(129, 140, 248, 0.8);
+    fill: rgba(99, 102, 241, 0.04);
+    filter: drop-shadow(0 0 30px rgba(99, 102, 241, 0.5));
+    animation: university-pulse 4s ease-in-out infinite alternate;
+}
+
+@keyframes university-pulse {
+    0% {
+        transform: scale(1);
+        filter: drop-shadow(0 0 20px rgba(99, 102, 241, 0.3));
+    }
+    100% {
+        transform: scale(1.03);
+        filter: drop-shadow(0 0 45px rgba(129, 140, 248, 0.7));
+    }
+}
+
+/* Radiant Neon Border Shine Animation */
+.radiant-border-shine {
+    fill: rgba(99, 102, 241, 0.03);
+    stroke: rgba(129, 140, 248, 0.7);
+    stroke-width: 0.8;
+    filter: drop-shadow(0 0 15px rgba(99, 102, 241, 0.6)) drop-shadow(0 0 30px rgba(139, 92, 246, 0.4));
+    animation: border-pulse 3.5s ease-in-out infinite alternate;
+}
+
+@keyframes border-pulse {
+    0% {
+        stroke: rgba(129, 140, 248, 0.5);
+        filter: drop-shadow(0 0 10px rgba(99, 102, 241, 0.4));
+    }
+    100% {
+        stroke: rgba(165, 180, 252, 0.95);
+        filter: drop-shadow(0 0 25px rgba(99, 102, 241, 0.8)) drop-shadow(0 0 50px rgba(139, 92, 246, 0.6));
+    }
+}
+
+/* Holographic Glass Card */
+.holo-card {
+    background: linear-gradient(135deg, rgba(18, 24, 38, 0.7) 0%, rgba(10, 14, 23, 0.85) 100%);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid var(--border-hologram);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.holo-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(99, 102, 241, 0.5), transparent);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.holo-card:hover {
+    border-color: var(--border-hover);
+    transform: translateY(-3px);
+    box-shadow: 0 30px 60px -12px rgba(99, 102, 241, 0.25), inset 0 1px 0 rgba(255, 255, 255, 0.15);
+}
+
+.holo-card:hover::before {
+    opacity: 1;
+}
+
+/* Futuristic Scrollbar */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+::-webkit-scrollbar-track {
+    background: #030508;
+}
+::-webkit-scrollbar-thumb {
+    background: #1e293b;
+    border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #6366f1;
+}
