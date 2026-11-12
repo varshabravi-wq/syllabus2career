@@ -8,18 +8,46 @@
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/animation.css">
-</head>
-<body class="min-h-screen font-sans antialiased selection:bg-indigo-500 selection:text-white relative">
+    <style>
+        /* Embedded Keyframe Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
 
-    <!-- ================= CINEMATIC LARGE INTRO SPLASH SCREEN ================= -->
+        .animate-fade-in {
+            animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% {
+                box-shadow: 0 0 20px -5px rgba(99, 102, 241, 0.4);
+            }
+            50% {
+                box-shadow: 0 0 35px 0px rgba(99, 102, 241, 0.7);
+            }
+        }
+
+        .glow-pulse {
+            animation: pulseGlow 4s infinite ease-in-out;
+        }
+    </style>
+</head>
+<body class="min-h-screen font-sans antialiased selection:bg-indigo-500 selection:text-white relative bg-[#060911] text-slate-100">
+
+    <!-- ================= CINEMATIC INTRO SPLASH SCREEN ================= -->
     <div id="intro-splash">
-        <!-- Radiant University / Student Graduation Outline Background in Splash -->
         <svg class="splash-university-bg" viewBox="0 0 24 24" stroke-width="0.5">
             <path d="M12 3L1 9l11 6 9-4.91V17h2V9M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82z"/>
         </svg>
 
         <div class="relative z-10 flex flex-col items-center space-y-6 text-center px-4">
-            <!-- Large Glowing Logo Box -->
             <div class="w-32 h-32 sm:w-36 sm:h-36 rounded-3xl bg-gradient-to-tr from-indigo-600/40 to-violet-600/40 border-2 border-indigo-500/60 flex items-center justify-center shadow-2xl shadow-indigo-600/50 relative group">
                 <div class="absolute inset-0 bg-indigo-500/30 blur-2xl"></div>
                 <svg class="w-16 h-16 sm:w-20 sm:h-20 text-indigo-300 relative z-10 filter drop-shadow(0 0 10px rgba(129, 140, 248, 0.8))" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -27,7 +55,6 @@
                 </svg>
             </div>
 
-            <!-- Large Brand Title & Subtitle -->
             <div class="space-y-3">
                 <h1 class="text-3xl sm:text-5xl font-black tracking-tight text-white bg-gradient-to-r from-white via-indigo-100 to-indigo-400 bg-clip-text text-transparent drop-shadow-lg">
                     Syllabus2Career
@@ -37,14 +64,13 @@
                 </p>
             </div>
 
-            <!-- Animated Progress Bar -->
             <div class="w-56 sm:w-64 h-1.5 bg-slate-800/80 rounded-full overflow-hidden mt-6 border border-indigo-500/30 shadow-inner">
                 <div class="bg-gradient-to-r from-indigo-500 via-violet-500 to-teal-400 h-full rounded-full animate-pulse" style="width: 85%"></div>
             </div>
         </div>
     </div>
 
-    <!-- Persistent Neon Border-Shine Background Watermark Layer -->
+    <!-- Persistent Neon Watermark Layer -->
     <div class="fixed inset-0 flex items-center justify-center pointer-events-none z-[-1] overflow-hidden">
         <svg class="w-[55vw] h-[55vw] max-w-[650px] max-h-[650px] transform scale-110 radiant-border-shine" viewBox="0 0 24 24">
             <path d="M13 10V3L4 14h7v7l9-11h-7z"/>
@@ -55,7 +81,6 @@
     <header class="border-b border-indigo-500/20 bg-[#060911]/85 backdrop-blur-2xl sticky top-0 z-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
             <div class="flex items-center space-x-3">
-                <!-- Header Logo Container -->
                 <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-indigo-600/30 to-violet-600/30 border border-indigo-500/40 flex items-center justify-center overflow-hidden shadow-lg shadow-indigo-500/20 relative group">
                     <div class="absolute inset-0 bg-indigo-500/20 blur-md opacity-75"></div>
                     <svg class="w-5 h-5 text-indigo-400 relative z-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -78,7 +103,7 @@
                 <button onclick="switchView('ai-roadmap')" class="nav-btn px-4 py-1.5 text-xs font-medium rounded-full text-slate-400 hover:text-white transition-all">AI Roadmap</button>
             </nav>
 
-            <!-- Profile & Clickable Rank Badge Showcase Trigger -->
+            <!-- Profile Badge -->
             <div onclick="showBadgeShowcase()" class="flex items-center space-x-3 cursor-pointer group p-1.5 rounded-xl hover:bg-indigo-500/10 transition-all border border-transparent hover:border-indigo-500/30" title="Click to view rank badges & student scores">
                 <div class="hidden sm:block text-right">
                     <div class="text-xs font-bold text-slate-200 group-hover:text-indigo-400 transition-colors">Varsha B R</div>
@@ -94,12 +119,11 @@
         </div>
     </header>
 
-    <!-- Main Application Container -->
+    <!-- Main Container -->
     <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 relative z-10">
 
-        <!-- ================= VIEW 1: DASHBOARD ================= -->
+        <!-- DASHBOARD VIEW -->
         <div id="dashboard-view" class="app-view space-y-8 animate-fade-in">
-            <!-- Cohort Banner -->
             <div class="relative overflow-hidden rounded-3xl holo-card p-6 sm:p-8">
                 <div class="absolute -right-10 -bottom-10 w-60 h-60 bg-indigo-600/20 rounded-full blur-3xl pointer-events-none"></div>
                 <div class="relative z-10 flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
@@ -129,7 +153,7 @@
                 </div>
             </div>
 
-            <!-- Quick Stats Grid -->
+            <!-- Stats Grid -->
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
                 <div class="holo-card rounded-2xl p-5">
                     <div class="text-[10px] font-mono text-indigo-400 uppercase tracking-widest font-bold mb-2">Subjects Mapped</div>
@@ -172,10 +196,8 @@
                 </div>
             </div>
 
-            <!-- Detailed Grid & Live Syllabus Parser Widget -->
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
                 <div class="lg:col-span-2 space-y-8">
-                    <!-- Critical Gaps List -->
                     <div class="holo-card rounded-2xl p-6 space-y-6">
                         <div class="flex justify-between items-center">
                             <h3 class="text-lg font-bold text-white tracking-tight">Critical Skill Gaps for Software Roles</h3>
@@ -207,7 +229,6 @@
                         </div>
                     </div>
 
-                    <!-- Live Syllabus PDF / PPT Parser Widget -->
                     <div class="holo-card border-indigo-500/40 rounded-2xl p-6 space-y-4 shadow-2xl">
                         <div class="flex items-center justify-between">
                             <span class="text-[10px] font-mono font-bold uppercase tracking-widest text-indigo-400">AI DOCUMENT PARSER V2.4</span>
@@ -234,7 +255,6 @@
                     </div>
                 </div>
 
-                <!-- Lab-to-Resume AI Preview -->
                 <div class="holo-card rounded-2xl p-6 flex flex-col justify-between space-y-6">
                     <div>
                         <div class="flex items-center justify-between mb-3">
@@ -255,7 +275,7 @@
             </div>
         </div>
 
-        <!-- ================= VIEW 2: CAREER EXPLORER ================= -->
+        <!-- CAREER EXPLORER VIEW -->
         <div id="career-explorer-view" class="app-view hidden space-y-8 animate-fade-in">
             <div class="space-y-2">
                 <h2 class="text-3xl font-black tracking-tight text-white">Career Explorer & Role Matcher</h2>
@@ -263,7 +283,6 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <!-- 1. Software Developer -->
                 <div class="holo-card rounded-2xl p-6 space-y-4">
                     <div class="flex justify-between items-start">
                         <div class="w-10 h-10 rounded-xl bg-indigo-600/20 text-indigo-400 flex items-center justify-center font-bold font-mono border border-indigo-500/30">SD</div>
@@ -280,7 +299,6 @@
                     <button onclick="viewBridgeRoadmap('Software Developer')" class="w-full py-2.5 rounded-xl text-xs font-bold bg-indigo-600 hover:bg-indigo-500 text-white transition-all shadow-lg shadow-indigo-600/20">View Bridge Roadmap</button>
                 </div>
 
-                <!-- 2. AI / ML Engineer -->
                 <div class="holo-card rounded-2xl p-6 space-y-4">
                     <div class="flex justify-between items-start">
                         <div class="w-10 h-10 rounded-xl bg-violet-600/20 text-violet-400 flex items-center justify-center font-bold font-mono border border-violet-500/30">AI</div>
@@ -297,7 +315,6 @@
                     <button onclick="viewBridgeRoadmap('AI / Machine Learning Engineer')" class="w-full py-2.5 rounded-xl text-xs font-bold bg-slate-800 hover:bg-slate-700 text-white transition-all border border-slate-700">View Bridge Roadmap</button>
                 </div>
 
-                <!-- 3. Data Analyst -->
                 <div class="holo-card rounded-2xl p-6 space-y-4">
                     <div class="flex justify-between items-start">
                         <div class="w-10 h-10 rounded-xl bg-blue-600/20 text-blue-400 flex items-center justify-center font-bold font-mono border border-blue-500/30">DA</div>
@@ -314,7 +331,6 @@
                     <button onclick="viewBridgeRoadmap('Data Analyst & AI Engineer')" class="w-full py-2.5 rounded-xl text-xs font-bold bg-slate-800 hover:bg-slate-700 text-white transition-all border border-slate-700">View Bridge Roadmap</button>
                 </div>
 
-                <!-- 4. Cybersecurity -->
                 <div class="holo-card rounded-2xl p-6 space-y-4">
                     <div class="flex justify-between items-start">
                         <div class="w-10 h-10 rounded-xl bg-cyan-600/20 text-cyan-400 flex items-center justify-center font-bold font-mono border border-cyan-500/30">CS</div>
@@ -331,7 +347,6 @@
                     <button onclick="viewBridgeRoadmap('Cybersecurity Engineer')" class="w-full py-2.5 rounded-xl text-xs font-bold bg-slate-800 hover:bg-slate-700 text-white transition-all border border-slate-700">View Bridge Roadmap</button>
                 </div>
 
-                <!-- 5. Cloud & DevOps -->
                 <div class="holo-card rounded-2xl p-6 space-y-4">
                     <div class="flex justify-between items-start">
                         <div class="w-10 h-10 rounded-xl bg-emerald-600/20 text-emerald-400 flex items-center justify-center font-bold font-mono border border-emerald-500/30">CA</div>
@@ -348,7 +363,6 @@
                     <button onclick="viewBridgeRoadmap('Cloud & DevOps Architect')" class="w-full py-2.5 rounded-xl text-xs font-bold bg-slate-800 hover:bg-slate-700 text-white transition-all border border-slate-700">View Bridge Roadmap</button>
                 </div>
 
-                <!-- 6. Full-Stack Engineer -->
                 <div class="holo-card rounded-2xl p-6 space-y-4">
                     <div class="flex justify-between items-start">
                         <div class="w-10 h-10 rounded-xl bg-rose-600/20 text-rose-400 flex items-center justify-center font-bold font-mono border border-rose-500/30">FS</div>
@@ -367,7 +381,7 @@
             </div>
         </div>
 
-        <!-- ================= VIEW 3: SYLLABUS MAPPING ================= -->
+        <!-- SYLLABUS MAPPING VIEW -->
         <div id="syllabus-mapping-view" class="app-view hidden space-y-8 animate-fade-in">
             <div class="space-y-2">
                 <h2 class="text-3xl font-black tracking-tight text-white">Academic Syllabus Mapping</h2>
@@ -395,7 +409,7 @@
             </div>
         </div>
 
-        <!-- ================= VIEW 4: AI ROADMAP ================= -->
+        <!-- AI ROADMAP VIEW -->
         <div id="ai-roadmap-view" class="app-view hidden space-y-8 animate-fade-in">
             <div class="space-y-2">
                 <h2 class="text-3xl font-black tracking-tight text-white">AI Bridge Roadmap & Modules</h2>
@@ -419,17 +433,149 @@
 
     </main>
 
-    <!-- Splash Screen Dismiss Script -->
+    <!-- ================= FLOATING AI CHATBOT WIDGET ================= -->
+    <div id="chat-widget" class="fixed bottom-6 right-6 z-[9999] font-sans">
+        <button id="chat-toggle" class="glow-pulse px-5 py-3.5 rounded-full bg-gradient-to-r from-indigo-600 via-violet-600 to-indigo-500 text-white font-bold text-xs tracking-wider shadow-2xl flex items-center gap-2.5 border border-indigo-400/40 hover:scale-105 active:scale-95 transition-all cursor-pointer">
+            <svg class="w-4 h-4 text-indigo-200 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path>
+            </svg>
+            <span>SKILL AI ASSISTANT</span>
+        </button>
+
+        <div id="chat-box" class="hidden animate-fade-in absolute bottom-16 right-0 w-[340px] sm:w-[380px] h-[480px] bg-[#060911]/95 border border-indigo-500/40 rounded-3xl flex-col shadow-2xl shadow-indigo-600/30 backdrop-blur-2xl overflow-hidden">
+            <div class="px-4 py-3.5 bg-[#030508]/80 border-b border-indigo-500/30 flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                    <div class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></div>
+                    <span class="font-bold text-xs text-white tracking-wide">Syllabus2Career AI 🤖</span>
+                </div>
+                <span class="text-[9px] font-mono font-bold px-2 py-0.5 rounded bg-indigo-500/20 text-indigo-300 border border-indigo-500/30">V2.4 Live AI</span>
+            </div>
+
+            <div id="chat-messages" class="flex-1 p-4 overflow-y-auto space-y-3 font-mono text-xs text-slate-200">
+                <div class="p-3 rounded-2xl bg-indigo-950/40 border border-indigo-500/30 text-indigo-200 max-w-[88%] leading-relaxed">
+                    Hi Varsha! I'm your Skill Graph Assistant. Ask me anything—from coding concepts and career roadmaps to your DSU syllabus!
+                </div>
+            </div>
+
+            <div class="p-3 bg-[#030508]/80 border-t border-indigo-500/30 flex gap-2">
+                <input id="chat-input" type="text" placeholder="Ask any question..." class="flex-1 bg-[#0b0f19] border border-indigo-500/30 text-white px-3.5 py-2.5 rounded-xl text-xs outline-none focus:border-indigo-400 transition-all font-mono">
+                <button id="chat-send" class="px-4 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white text-xs font-bold font-mono transition-all border border-indigo-400/40 shadow-lg shadow-indigo-600/30 cursor-pointer">Send</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Splash Screen Script -->
     <script>
         window.addEventListener('load', () => {
             setTimeout(() => {
                 const splash = document.getElementById('intro-splash');
-                splash.classList.add('fade-out');
-            }, 1400); // 1.4 seconds display time for maximum presentation impact
+                if (splash) splash.classList.add('fade-out');
+            }, 1400);
         });
     </script>
 
-    <!-- Modular Scripts -->
+    <!-- Chatbot Logic Script (Groq Real AI with Auto-Model Detection) -->
+    <script>
+        const toggleBtn = document.getElementById('chat-toggle');
+        const chatBox = document.getElementById('chat-box');
+        const sendBtn = document.getElementById('chat-send');
+        const inputEl = document.getElementById('chat-input');
+        const messagesEl = document.getElementById('chat-messages');
+
+        // Integrated Groq API Key
+        const GROQ_API_KEY = "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";
+
+        toggleBtn.onclick = () => {
+            if (chatBox.classList.contains('hidden')) {
+                chatBox.classList.remove('hidden');
+                chatBox.classList.add('flex');
+            } else {
+                chatBox.classList.add('hidden');
+                chatBox.classList.remove('flex');
+            }
+        };
+
+        function addMsg(text, isUser = false) {
+            const msg = document.createElement('div');
+            msg.className = isUser 
+                ? "p-3 rounded-2xl bg-indigo-600 text-white self-end max-w-[85%] leading-relaxed shadow-md animate-fade-in" 
+                : "p-3 rounded-2xl bg-indigo-950/40 border border-indigo-500/30 text-indigo-200 self-start max-w-[88%] leading-relaxed shadow-md animate-fade-in";
+            msg.innerText = text;
+            messagesEl.appendChild(msg);
+            messagesEl.scrollTop = messagesEl.scrollHeight;
+        }
+
+        async function handleSend() {
+            const userText = inputEl.value.trim();
+            if (!userText) return;
+
+            addMsg(userText, true);
+            inputEl.value = '';
+
+            const loadingId = "loading-" + Date.now();
+            const loadingMsg = document.createElement('div');
+            loadingMsg.id = loadingId;
+            loadingMsg.className = "p-2 rounded-xl bg-slate-900/60 text-slate-400 text-[11px] italic self-start animate-pulse";
+            loadingMsg.innerText = "Thinking...";
+            messagesEl.appendChild(loadingMsg);
+            messagesEl.scrollTop = messagesEl.scrollHeight;
+
+            try {
+                // Step 1: Automatically grab an active chat model from your Groq account
+                const modelsRes = await fetch("https://api.groq.com/openai/v1/models", {
+                    headers: { "Authorization": `Bearer ${GROQ_API_KEY}` }
+                });
+                const modelsData = await modelsRes.json();
+                
+                let activeModel = "llama-3.1-8b-instant";
+                if (modelsData.data && modelsData.data.length > 0) {
+                    const validModel = modelsData.data.find(m => 
+                        !m.id.includes("whisper") && 
+                        !m.id.includes("guard") && 
+                        !m.id.includes("tts")
+                    );
+                    if (validModel) activeModel = validModel.id;
+                }
+
+                const systemPrompt = "You are Syllabus2Career AI, an intelligent assistant for Dayananda Sagar University CSE students. Answer ANY user question accurately and concisely in 2 to 4 sentences. If asked about Syllabus2Career, mention skill gap mapping (React, Docker) and peer mentors (Spandana Kp, Varsha Upadhye).";
+
+                // Step 2: Send your question to that active model
+                const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json",
+                        "Authorization": `Bearer ${GROQ_API_KEY}`
+                    },
+                    body: JSON.stringify({
+                        model: activeModel,
+                        messages: [
+                            { role: "system", content: systemPrompt },
+                            { role: "user", content: userText }
+                        ]
+                    })
+                });
+
+                const data = await response.json();
+                if (document.getElementById(loadingId)) document.getElementById(loadingId).remove();
+
+                if (data.choices && data.choices[0]?.message?.content) {
+                    addMsg(data.choices[0].message.content, false);
+                } else if (data.error) {
+                    addMsg(`API Error: ${data.error.message}`, false);
+                } else {
+                    addMsg("No response received. Check your API key.", false);
+                }
+            } catch (err) {
+                if (document.getElementById(loadingId)) document.getElementById(loadingId).remove();
+                addMsg(`Network Error: ${err.message}`, false);
+            }
+        }
+
+        sendBtn.onclick = handleSend;
+        inputEl.onkeypress = (e) => { if (e.key === 'Enter') handleSend(); };
+    </script>
+
+    <!-- External Modular Scripts -->
     <script src="js/data.js"></script>
     <script src="js/engine.js"></script>
     <script src="js/app.js"></script>
